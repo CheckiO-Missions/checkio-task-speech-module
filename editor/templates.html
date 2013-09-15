@@ -1,30 +1,24 @@
 <script type="text/template" id="template_animation">
-    <div class="animation-content center-exp">
-        <div class="output"></div>
-        <div class="explanation center-exp"></div>
-        <div class="answer"></div>
+    <div class="content">
         <div class="call"></div>
+        <div class="output"></div>
+        <div class="answer"></div>
+        <div style="clear:both"></div>
     </div>
 </script>
 
 <script type="text/template" id="template_tryit">
-    <div class="tryit-content center-exp">
-        <table class="tool">
-            <tr>
-                <td>
-                    <input type="text" value="test">
-                </td>
-                <td>
-                    <button class="bn-check btn">Action</button>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" class="checkio-result">
-                    Result:<br>
-                    <span class="checkio-result-in">&nbsp;</span>
-                </td>
-            </tr>
+    <div class="tryit-results center-exp">
+        <div class="tool">
+            <form class="input-test">
+                <label class="input-label">Number (0-999):</label>
+                <input type="text" size="3" maxlength="3" class="input-text uneditable-input"/>
+                <button type="submit" class="bn_check btn">Say It</button>
 
-        </table>
+            </form>
+        </div>
+        <div style="clear: both"></div>
+        <div class="checkio-result">Checkio said: <span class="checkio-result-in"></span></div>
+        <div style="clear: both"></div>
     </div>
 </script>

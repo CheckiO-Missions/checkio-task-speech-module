@@ -88,29 +88,36 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
 
         });
 
-       
 
-        var colorOrange4 = "#F0801A";
-        var colorOrange3 = "#FA8F00";
-        var colorOrange2 = "#FAA600";
-        var colorOrange1 = "#FABA00";
+        var $try;
+//
+        function isNumber(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+        }
+        ext.set_console_process_ret(function(this_e, ret){
+            $try.find(".checkio-result-in").html(ret);
+        });
 
-        var colorBlue4 = "#294270";
-        var colorBlue3 = "#006CA9";
-        var colorBlue2 = "#65A1CF";
-        var colorBlue1 = "#8FC7ED";
+        ext.set_generate_animation_panel(function(this_e){
 
-        var colorGrey4 = "#737370";
-        var colorGrey3 = "#D9E9E";
-        var colorGrey2 = "#C5C6C6";
-        var colorGrey1 = "#EBEDED";
+            $try = $(this_e.setHtmlTryIt(ext.get_template('tryit')));
+            $try.find('.input-text').focus();
 
-        var colorWhite = "#FFFFFF";
-        //Your Additional functions or objects inside scope
-        //
-        //
-        //
+            $try.find('form').submit(function(e){
+                var number_text = $try.find('.input-text').val();
+                var number = parseInt(number_text);
+                if (isNumber(number)){
+                    this_e.sendToConsoleCheckiO(number);
+                    e.stopPropagation();
+                }
+                else {
+                    $try.find(".checkio-result-in").html('Please enter a number.');
 
+                }
+                return false;
+            });
+
+        });
 
     }
 );
