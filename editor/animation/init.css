@@ -59,12 +59,17 @@
 
 .tryit-content {
     background-color: #dfe8f7;
-    font-family: verdana;
+    font-family: Verdana, Arial, sans-serif;
+}
+
+.tryit-content .tool {
+    margin-top: 7px;
+    margin-bottom: 5px;
 }
 
 .tryit-content .tool td{
     text-align: center;
-    vertical-align: top;
+    vertical-align: middle;
     padding: 3px;
 }
 
@@ -81,7 +86,7 @@
 }
 
 .tryit-content .input-label {
-    font-family: Verdana;
+    font-family: Verdana, Arial, sans-serif;
     font-size: 16px;
     color: #294270;
 }

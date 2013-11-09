@@ -95,7 +95,7 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
             return !isNaN(parseFloat(n)) && isFinite(n);
         }
         ext.set_console_process_ret(function(this_e, ret){
-            $try.find(".checkio-result-in").html(ret);
+            $try.find(".checkio-result").html("Your result:<br>" + ret);
         });
 
         ext.set_generate_animation_panel(function(this_e){
@@ -103,7 +103,7 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
             $try = $(this_e.setHtmlTryIt(ext.get_template('tryit')));
             $try.find('.input-text').focus();
 
-            $try.find('form').submit(function(e){
+            $try.find('.bn-check').click(function(e){
                 var number_text = $try.find('.input-text').val();
                 var number = parseInt(number_text);
                 if (isNumber(number)){
@@ -111,7 +111,7 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
                     e.stopPropagation();
                 }
                 else {
-                    $try.find(".checkio-result-in").html('Please enter a number.');
+                    $try.find(".checkio-result").html('Please enter a number.');
 
                 }
                 return false;

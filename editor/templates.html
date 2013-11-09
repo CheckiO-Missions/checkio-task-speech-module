@@ -9,16 +9,15 @@
 
 <script type="text/template" id="template_tryit">
     <div class="tryit-content center-exp">
-        <div class="tool">
-            <form class="input-test">
-                <label class="input-label">Number (0-999):</label>
-                <input type="text" size="3" maxlength="3" class="input-text uneditable-input"/>
-                <button type="submit" class="bn_check btn">Say It</button>
-
-            </form>
-        </div>
-        <div style="clear: both"></div>
-        <div class="checkio-result">Checkio said: <span class="checkio-result-in"></span></div>
-        <div style="clear: both"></div>
+        <table class="tool">
+            <tr>
+                <td>
+                    <label class="input-label">Number (0-999):</label>
+                    <input type="text" size="3" maxlength="3" class="input-text uneditable-input"/>
+                    <button type="button" class="bn-check btn">Say It</button>
+                </td>
+            </tr>
+        </table>
+        <div class="checkio-result"></div>
     </div>
 </script>
