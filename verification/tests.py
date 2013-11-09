@@ -34,14 +34,6 @@ TESTS = {
             "answer": "six"
         },
         {
-            "input": 7,
-            "answer": "seven"
-        },
-        {
-            "input": 8,
-            "answer": "eight"
-        },
-        {
             "input": 9,
             "answer": "nine"
         },
@@ -122,14 +114,6 @@ TESTS = {
             "answer": "fifty"
         },
         {
-            "input": 60,
-            "answer": "sixty"
-        },
-        {
-            "input": 70,
-            "answer": "seventy"
-        },
-        {
             "input": 80,
             "answer": "eighty"
         },
@@ -149,14 +133,7 @@ TESTS = {
             "input": 300,
             "answer": "three hundred"
         },
-        {
-            "input": 400,
-            "answer": "four hundred"
-        },
-        {
-            "input": 500,
-            "answer": "five hundred"
-        },
+
         {
             "input": 600,
             "answer": "six hundred"
@@ -166,52 +143,12 @@ TESTS = {
             "answer": "seven hundred"
         },
         {
-            "input": 800,
-            "answer": "eight hundred"
-        },
-        {
             "input": 900,
             "answer": "nine hundred"
         },
         {
             "input": 21,
             "answer": "twenty one"
-        },
-        {
-            "input": 59,
-            "answer": "fifty nine"
-        },
-        {
-            "input": 70,
-            "answer": "seventy"
-        },
-        {
-            "input": 41,
-            "answer": "forty one"
-        },
-        {
-            "input": 82,
-            "answer": "eighty two"
-        },
-        {
-            "input": 541,
-            "answer": "five hundred forty one"
-        },
-        {
-            "input": 351,
-            "answer": "three hundred fifty one"
-        },
-        {
-            "input": 183,
-            "answer": "one hundred eighty three"
-        },
-        {
-            "input": 516,
-            "answer": "five hundred sixteen"
-        },
-        {
-            "input": 226,
-            "answer": "two hundred twenty six"
         },
         {
             "input": 312,
@@ -224,10 +161,6 @@ TESTS = {
         {
             "input": 509,
             "answer": "five hundred nine"
-        },
-        {
-            "input": 783,
-            "answer": "seven hundred eighty three"
         },
         {
             "input": 753,
@@ -248,10 +181,6 @@ TESTS = {
             "answer": "fifty five"
         },
         {
-            "input": 28,
-            "answer": "twenty eight"
-        },
-        {
             "input": 23,
             "answer": "twenty three"
         },
@@ -270,22 +199,6 @@ TESTS = {
         {
             "input": 856,
             "answer": "eight hundred fifty six"
-        },
-        {
-            "input": 787,
-            "answer": "seven hundred eighty seven"
-        },
-        {
-            "input": 466,
-            "answer": "four hundred sixty six"
-        },
-        {
-            "input": 345,
-            "answer": "three hundred forty five"
-        },
-        {
-            "input": 414,
-            "answer": "four hundred fourteen"
         },
         {
             "input": 742,
