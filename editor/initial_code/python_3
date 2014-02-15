@@ -1,4 +1,4 @@
-FIRST_TEN = ["zero", "one", "two", "three", "four", "five", "six", "seven",
+FIRST_TEN = ["one", "two", "three", "four", "five", "six", "seven",
              "eight", "nine"]
 SECOND_TEN = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
               "sixteen", "seventeen", "eighteen", "nineteen"]
