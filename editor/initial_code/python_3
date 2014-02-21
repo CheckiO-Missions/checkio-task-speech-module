@@ -12,12 +12,9 @@ def checkio(number):
     #replace this for solution
     return 'string representation of n'
 
-#Some hints
-#Don't forget strip whitespaces at the end of string
-
-
 #These "asserts" using only for self-checking and not necessary for auto-testing
 if __name__ == '__main__':
+    assert not checkio(212).endswith(' '), "Don't forget strip whitespaces at the end of string"
     assert checkio(4) == 'four', "1st example"
     assert checkio(133) == 'one hundred thirty three', "2nd example"
     assert checkio(12) == 'twelve', "3rd example"
