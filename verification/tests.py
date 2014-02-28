@@ -171,7 +171,7 @@ TESTS = {
             "answer": "nine hundred forty"
         },
         {
-            "input": 940,
+            "input": 999,
             "answer": "nine hundred ninety nine"
         }
     ],
