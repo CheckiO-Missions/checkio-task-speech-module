@@ -169,6 +169,10 @@ TESTS = {
         {
             "input": 940,
             "answer": "nine hundred forty"
+        },
+        {
+            "input": 940,
+            "answer": "nine hundred ninety nine"
         }
     ],
     "Extra": [
