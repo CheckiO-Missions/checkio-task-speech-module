@@ -83,6 +83,7 @@
     text-align: center;
     color: #294270;
     width: 300px;
+    white-space: pre-wrap;
 }
 
 .tryit-content .input-label {
