@@ -8,7 +8,7 @@ const FIRST_TEN = ["one", "two", "three", "four", "five", "six", "seven",
                     "eighty", "ninety"],
       HUNDRED = "hundred";
 
-function speechModule(numbers){
+function speechModule(number){
     // your code here
     return 'numbers';
 }
