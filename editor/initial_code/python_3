@@ -21,3 +21,4 @@ if __name__ == '__main__':
     assert checkio(212) == 'two hundred twelve', "5th example"
     assert checkio(40) == 'forty', "6th example"
     assert not checkio(212).endswith(' '), "Don't forget strip whitespaces at the end of string"
+    print('Done! Go and Check it!')
