@@ -18,23 +18,7 @@
     <p>
         <strong>Exemple :</strong>
     </p>
-{% if interpreter.slug == "js-node" %}
-<pre class="brush: python">speechModule(4)=='four'
-speechModule(143)=='one hundred forty three'
-speechModule(12)=='twelve'
-speechModule(101)=='one hundred one'
-speechModule(212)=='two hundred twelve'
-speechModule(40)=='forty'
-</pre>
-{% else %}
-<pre class="brush: python">checkio(4)=='four'
-checkio(143)=='one hundred forty three'
-checkio(12)=='twelve'
-checkio(101)=='one hundred one'
-checkio(212)=='two hundred twelve'
-checkio(40)=='forty'
-</pre>
-{% endif %}
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
 </div>
 
 <p>

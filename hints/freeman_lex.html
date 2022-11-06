@@ -1,0 +1,252 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <i>I have no idea how to start solving this mission.</i>
+    </div>
+    <div class="answer">
+        <p>
+            💡 The solution I offer you is the following.
+            <ul>
+                <li>
+                    <p>
+                        First, to make such changes in the initial lists, that each word responds to its index. Its make the further expressions more readable. 
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Second, to break the initial number into a list/tuple of integers, complemented with zeros to the length of three (the maximum length of the number in this mission).
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Third, to create new list with words from the initial lists instead of respective digits from "broken" number (taking into considerations the specific case with the second tenth - 10-19).
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        And the last, join this list of words (without empty elements) into the string with whitespaces and return it.
+                    </p>
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>Ok, what should I start from?</i>
+    </div>
+    <div class="answer">
+        <p>
+            Let's add to the initial lists empty elements at beginning, so the words become corresponding to its indexes. Also remove <b class="code">HUNDRED</b> - you will write word <b class="code">"hundred"</b> ones in the solution. I also make tuples from the lists, but it does not matter - you may keep them as lists.
+        </p>
+        <pre class="brush: python">
+FIRST_TEN = "", "one", "two", "three", "four", "five", "six",\
+"seven", "eight", "nine"
+SECOND_TEN = "ten", "eleven", "twelve", "thirteen", "fourteen",\
+"fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
+OTHER_TENS = "", "", "twenty", "thirty", "forty", "fifty", "sixty",\
+"seventy", "eighty", "ninety"
+        </pre>
+        <p>
+            Symbol <b class="code">\</b> is used to proceed expression at the next line if necessary.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>
+            Explain to me, how to convert number into the tuple of integers.
+        </i>
+    </div>
+    <div class="answer">
+        <p>
+            You should start with converting the number into string with <a target="_blank" href="https://www.w3schools.com/python/ref_func_str.asp">str()</a> built-in function.
+        </p>
+        <pre class="brush: python">
+str(num)
+        </pre>
+        <p>
+            Now, complement the string with zeros to the length of three. It makes further expressions simpler and more readable. Do it with string method <a target="_blank" href="https://www.w3schools.com/python/ref_string_zfill.asp">str.zfill(int)</a>.
+        </p>
+        <pre class="brush: python">
+str(num).zfill(3)
+        </pre>
+        <p>
+            Split the string and convert each character in integer with <a target="_blank" href="https://www.w3schools.com/python/ref_func_map.asp">map()</a> built-in function.
+            It return <b class="code">map</b> object.
+        </p>
+        <pre class="brush: python">
+map(int, str(num).zfill(3))
+        </pre>
+        <p>
+            It will be useful later, if unpack this object into tuple <b class="code">h, t, o</b> - hundreds, tenth, ones respectively. Since the length of the string after complementing with zeros will always be 3, you will always have hundreds and tenth, even if their values will remain zeros. 
+        </p>
+        <pre class="brush: python">
+h, t, o = map(int, str(num).zfill(3))        
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>
+            That was detailed! Now help me to build the new list with words instead of digits.
+        </i>
+    </div>
+    <div class="answer">
+        <p>
+            Let's declare the new variable <b class="code">res</b> as a tuple of words for your "hundreds" digit. You just need to use <b class="code">h</b> variable as index of element <b class="code">FIRST_TEN</b> tuple, since hundreds counting is the same as ones counting - one (hundred), two (hundred) etc. If <b class="code">h</b> equals <b class="code">0</b> empty string is got from tuple.
+        </p>
+        <pre class="brush: python">
+res = FIRST_TEN[h], ...
+        </pre>
+        <p>
+            Now you need to add word <b class="code">"hundred"</b>, which is needed only if <b class="code">h</b> (number of hundreds) not equal <b class="code">0</b>. Use <a target="_blank" href="https://www.w3schools.com/python/python_booleans.asp">bool()</a> function to perform the checking.
+        </p>
+        <pre class="brush: python">
+res = FIRST_TEN[h], "hundred"*bool(h)
+        </pre>
+        <p>
+            If <b class="code">h</b> is equal <b class="code">0</b>, this element of tuple would be empty string.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>
+            How to complement the tuple with tenth and ones?
+        </i>
+    </div>
+    <div class="answer">
+        <p>
+            Basically, doing the same, as in previous step with hundreds. If the value of tenth <b class="code">t</b> equals <b class="code">1</b>, it means you have deal with the second ten - ten, eleven, twelve etc. In this case, you should use the values of ones <b class="code">o</b> variable as an index for element in <b class="code">SECOND_TEN</b> tuple. 
+        </p>
+        <pre class="brush: python">
+res += (SECOND_TEN[o],) if t == 1 else ...
+        </pre>
+        <p>
+            Remember, that <b class="code">res</b> is a tuple, so you need to add the tenth word as an element of tuple. That is why the above expressions may look weird. 
+        </p>
+        <p>
+            In other case, when <b class="code">t</b> is not equal <b class="code">1</b>, you just add a tuple with two respective words for <b class="code">t</b> and <b class="code">o</b> indexes from <b class="code">OTHER_TENS</b> and <b class="code">FIRST_TEN</b> tuples.  
+        </p>
+        <pre class="brush: python">
+res += (SECOND_TEN[o],) if t == 1 else (OTHER_TENS[t], FIRST_TEN[o])
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>
+            The tuple is built. But how to convert it in the correct line of words?
+        </i>
+    </div>
+    <div class="answer">
+        <p>
+            Remove all empty strings (absent hundreds, tenth, ones) from the tuple with built-in <a target="_blank" href="https://www.w3schools.com/python/ref_func_filter.asp">filter()</a> function and <b class="code">bool</b> function as filtering rule.
+        </p>
+        <pre class="brush: python">
+filter(bool, res)
+        </pre>
+        <p>
+            Use the result of filtering as an argument for <a target="_blank" href="https://www.w3schools.com/python/ref_string_join.asp">str.join(iterable)</a> method. Join the words using whitespaces. 
+        </p>
+        <pre class="brush: python">
+" ".join(filter(bool, res))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>So, how my final solution should look like?</i>
+    </div>
+    <div class="answer">
+        <p>
+            You just need to add final expressions from previous hints, wrap your code into function expression and return the joined string.
+        </p>
+        <p>Here is the whole solution:</p>
+        <pre class="brush: python">
+FIRST_TEN = "", "one", "two", "three", "four", "five", "six",\
+"seven", "eight", "nine"
+SECOND_TEN = "ten", "eleven", "twelve", "thirteen", "fourteen",\
+"fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
+OTHER_TENS = "", "", "twenty", "thirty", "forty", "fifty", "sixty",\
+"seventy", "eighty", "ninety"
+
+def checkio(num: int) -> str:
+    
+    h, t, o = map(int, str(num).zfill(3))
+    
+    res = FIRST_TEN[h], "hundred"*bool(h)
+    res += (SECOND_TEN[o],) if t == 1 else (OTHER_TENS[t], FIRST_TEN[o])
+    
+    return " ".join(filter(bool, res))
+        </pre>
+        <p>
+            So much explained, yet solution is small)
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>Show me more solutions!<br />
+        'Cause I wanna be a real 🥇 Python Ninnjaa!</i>
+    </div>
+    <div class="answer">
+        <p>Sure, grab it!</p>
+        <p>
+            There is no conversion to string in this solution. Separate digits are received as quotient or reminder from division.
+        </p>
+        <pre class="brush: python">
+FIRST_TEN = ["one", "two", "three", "four", "five", "six", "seven",
+"eight", "nine"]
+SECOND_TEN = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+             "sixteen", "seventeen", "eighteen", "nineteen"]
+OTHER_TENS = ["twenty", "thirty", "forty", "fifty", "sixty", "seventy",
+             "eighty", "ninety"]
+HUNDRED = "hundred"
+
+def checkio(number: int) -> str:
+
+   n = number // 100
+   t = [FIRST_TEN[n-1], HUNDRED] if n > 0 else []
+
+   n = (number // 10) % 10
+   t += [OTHER_TENS[n-2]] if n > 1 else []
+
+   n = number % (10 if n > 1 else 20)
+   t += [(FIRST_TEN+SECOND_TEN)[n-1]] if n > 0 else []
+
+   return ' '.join(t)
+        </pre>
+        <p>
+            In this solution recursion is used and words for first two ten joined into one dictionary. 
+        </p>
+        <pre class="brush: python">
+def checkio(number: int) -> str:
+
+    l=["","one","two","three","four","five","six","seven",\
+    "eight","nine","ten","eleven","twelve","thirteen",\
+    "fourteen","fifteen","sixteen","seventeen","eighteen",\
+    "nineteen","twenty"]
+    d=dict(enumerate(l))
+    d.update({30:"thirty",40:"forty",50:"fifty",60:"sixty",\
+    70:"seventy",80:"eighty",90:"ninety"})
+    h=number//100
+    if h:
+        return (d[h]+ " hundred " + checkio(number%100)).strip()
+    if number in d:
+        return d[number]
+    return d[number//10*10]+" "+d[number%10]
+        </pre>
+        <p><b>Click "Best solutions" at mission menu and see a lot of other interesting solutions!</b></p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>Thanks! I know and understand more now! Everything works fine!</i>
+    </div>
+    <div class="answer">
+        👍 Glad to hear it!
+    </div>
+</div>
+</body>

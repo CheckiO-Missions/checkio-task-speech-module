@@ -10,35 +10,19 @@
 
 
 
-<p><strong>Вхідні дані: </strong>Число у вигляді цілого числа (int).</p>
+<p><strong>Вхідні дані:</strong>Ціле число.</p>
 
-<p><strong>Вихідні дані: </strong>Текстове написання числа, як рядок (str).</p>
+<p><strong>Вихідні дані:</strong>Рядок.</p>
 
 <div class="for_info_only">
     <p>
         <strong>Приклади:</strong>
     </p>
-{% if interpreter.slug == "js-node" %}
-<pre class="brush: python">speechModule(4)=='four'
-speechModule(143)=='one hundred forty three'
-speechModule(12)=='twelve'
-speechModule(101)=='one hundred one'
-speechModule(212)=='two hundred twelve'
-speechModule(40)=='forty'
-</pre>
-{% else %}
-<pre class="brush: python">checkio(4)=='four'
-checkio(143)=='one hundred forty three'
-checkio(12)=='twelve'
-checkio(101)=='one hundred one'
-checkio(212)=='two hundred twelve'
-checkio(40)=='forty'
-</pre>
-{% endif %}
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
 </div>
 
 <p>
-    <strong>Як це використовується: </strong>
+    <strong>Як це використовується:</strong>
     Ця концепція буде корисна для програмного забезпечення з синтезу мови або для автоматичних 
     систем звітності. Також це може стати в нагоді при написанні простого бота для чату, 
     який буде вміти складати числа.
