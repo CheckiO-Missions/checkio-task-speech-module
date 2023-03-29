@@ -164,6 +164,7 @@ filter(bool, res)
             Тобі просто потрібно додати остаточні вирази з попередніх підказок, обгорнути свій код у вираз функції та повернути з'єднаний рядок.
         </p>
         <p>Ось повне рішення:</p>
+        <div class="spoiler">
         <pre class="brush: python">
 FIRST_TEN = "", "one", "two", "three", "four", "five", "six",\
 "seven", "eight", "nine"
@@ -181,6 +182,7 @@ def checkio(num: int) -> str:
     
     return " ".join(filter(bool, res))
         </pre>
+        </div>
         <p>
             Так багато пояснювалося, а розв'язок такий короткий)
         </p>
@@ -196,6 +198,7 @@ def checkio(num: int) -> str:
         <p>
             У цьому рішенні немає перетворення на рядок. Окремі цифри отримуються як частка або залишок від ділення.
         </p>
+        <div class="spoiler">
         <pre class="brush: python">
 FIRST_TEN = ["one", "two", "three", "four", "five", "six", "seven",
 "eight", "nine"]
@@ -218,9 +221,11 @@ def checkio(number: int) -> str:
 
    return ' '.join(t)
         </pre>
+        </div>
         <p>
             У цьому розв'язку використовується рекурсія та слова для перших двох десятків з'єднані в один словник.
         </p>
+        <div class="spoiler">
         <pre class="brush: python">
 def checkio(number: int) -> str:
 
@@ -238,6 +243,7 @@ def checkio(number: int) -> str:
         return d[number]
     return d[number//10*10]+" "+d[number%10]
         </pre>
+        </div>
         <p><b>Тисни "Best solutions" в меню місії і побачиш багато інших цікавих рішень!</b></p>
     </div>
 </div>
