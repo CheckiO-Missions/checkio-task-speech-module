@@ -164,6 +164,7 @@ filter(bool, res)
             You just need to add final expressions from previous hints, wrap your code into function expression and return the joined string.
         </p>
         <p>Here is the whole solution:</p>
+        <div class="spoiler">
         <pre class="brush: python">
 FIRST_TEN = "", "one", "two", "three", "four", "five", "six",\
 "seven", "eight", "nine"
@@ -181,6 +182,7 @@ def checkio(num: int) -> str:
     
     return " ".join(filter(bool, res))
         </pre>
+        </div>
         <p>
             So much explained, yet solution is small)
         </p>
@@ -196,6 +198,7 @@ def checkio(num: int) -> str:
         <p>
             There is no conversion to string in this solution. Separate digits are received as quotient or reminder from division.
         </p>
+        <div class="spoiler">
         <pre class="brush: python">
 FIRST_TEN = ["one", "two", "three", "four", "five", "six", "seven",
 "eight", "nine"]
@@ -218,9 +221,11 @@ def checkio(number: int) -> str:
 
    return ' '.join(t)
         </pre>
+        </div>
         <p>
             In this solution recursion is used and words for first two ten joined into one dictionary. 
         </p>
+        <div class="spoiler">
         <pre class="brush: python">
 def checkio(number: int) -> str:
 
@@ -238,6 +243,7 @@ def checkio(number: int) -> str:
         return d[number]
     return d[number//10*10]+" "+d[number%10]
         </pre>
+        </div>
         <p><b>Click "Best solutions" at mission menu and see a lot of other interesting solutions!</b></p>
     </div>
 </div>
