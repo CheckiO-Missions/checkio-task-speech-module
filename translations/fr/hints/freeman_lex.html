@@ -1,0 +1,258 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <p>Je n'ai aucune idée de la manière de commencer à résoudre cette mission.</p>
+    </div>
+    <div class="answer">
+        <p>
+            💡 La solution que je vous propose est la suivante.
+            <ul>
+                <li>
+                    <p>
+                        Tout d'abord, il faut modifier les listes initiales de manière à ce que chaque mot réponde à son index. Cela rendra les expressions suivantes plus lisibles. 
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Deuxièmement, décomposer le nombre initial en une liste/tuple d'entiers, complétés par des zéros jusqu'à la longueur de trois (la longueur maximale du nombre dans cette mission).
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Troisièmement, créer une nouvelle liste avec des mots des listes initiales au lieu des chiffres respectifs du nombre "cassé" (en prenant en considération le cas spécifique du deuxième dixième - 10-19).
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Et enfin, joindre cette liste de mots (sans éléments vides) à la chaîne de caractères avec espaces blancs et la renvoyer.
+                    </p>
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Ok, par quoi dois-je commencer?</p>
+    </div>
+    <div class="answer">
+        <p>
+            Ajoutons aux listes initiales des éléments vides au début, afin que les mots correspondent à leurs index. Supprimez également <b class="code">HUNDRED</b> - vous écrirez les mots <b class="code">"hundred"</b> dans la solution. Je crée également des tuples à partir des listes, mais cela n'a pas d'importance - vous pouvez les conserver en tant que listes.
+        </p>
+        <pre class="brush: python">
+FIRST_TEN = "", "one", "two", "three", "four", "five", "six",\
+"seven", "eight", "nine"
+SECOND_TEN = "ten", "eleven", "twelve", "thirteen", "fourteen",\
+"fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
+OTHER_TENS = "", "", "twenty", "thirty", "forty", "fifty", "sixty",\
+"seventy", "eighty", "ninety"
+        </pre>
+        <p>
+            Le symbole <b class="code">\</b> est utilisé pour faire passer l'expression à la ligne suivante si nécessaire.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Expliquez-moi comment convertir un nombre en un tuple d'entiers.
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Commencez par convertir le nombre en chaîne de caractères à l'aide de la fonction intégrée <a target="_blank" href="https://www.w3schools.com/python/ref_func_str.asp">str()</a>.
+        </p>
+        <pre class="brush: python">
+str(num)
+        </pre>
+        <p>
+            Complétez ensuite la chaîne avec des zéros jusqu'à une longueur de trois. Cela rend les expressions suivantes plus simples et plus lisibles. Pour ce faire, utilisez la méthode string <a target="_blank" href="https://www.w3schools.com/python/ref_string_zfill.asp">str.zfill(int)</a>.
+        </p>
+        <pre class="brush: python">
+str(num).zfill(3)
+        </pre>
+        <p>
+            Divisez la chaîne et convertissez chaque caractère en entier avec la fonction intégrée <a target="_blank" href="https://www.w3schools.com/python/ref_func_map.asp">map()</a>.
+            Elle renvoie l'objet <b class="code">map</b>.
+        </p>
+        <pre class="brush: python">
+map(int, str(num).zfill(3))
+        </pre>
+        <p>
+            Il sera utile plus tard de décompresser cet objet en tuple <b class="code">h, t, o</b> - respectivement centaines, dixièmes, uns. Étant donné que la longueur de la chaîne après complémentation par des zéros sera toujours de 3, vous aurez toujours des centaines et des dixièmes, même si leurs valeurs resteront des zéros. 
+        </p>
+        <pre class="brush: python">
+h, t, o = map(int, str(num).zfill(3))        
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            C'était très détaillé! Aidez-moi maintenant à construire la nouvelle liste avec des mots au lieu de chiffres.
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Déclarons la nouvelle variable <b class="code">res</b> comme un tuple de mots pour votre chiffre "centaines". Il vous suffit d'utiliser la variable <b class="code">h</b> comme index du tuple <b class="code">FIRST_TEN</b>, puisque le comptage des centaines est identique à celui des uns - un (cent), deux (cent), etc. Si <b class="code">h</b> est égal à <b class="code">0</b>, la chaîne vide est extraite du tuple.
+        </p>
+        <pre class="brush: python">
+res = FIRST_TEN[h], ...
+        </pre>
+        <p>
+            Vous devez maintenant ajouter le mot <b class="code">"hundred"</b>, qui n'est nécessaire que si <b class="code">h</b> (nombre de centaines) n'est pas égal à <b class="code">0</b>. Utilisez la fonction <a target="_blank" href="https://www.w3schools.com/python/python_booleans.asp">bool()</a> pour effectuer la vérification.
+        </p>
+        <pre class="brush: python">
+res = FIRST_TEN[h], "hundred"*bool(h)
+        </pre>
+        <p>
+            Si <b class="code">h</b> est égal à <b class="code">0</b>, cet élément du tuple sera une chaîne vide.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Comment compléter le tuple avec des dixièmes et des uns?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Il s'agit essentiellement de procéder de la même manière qu'à l'étape précédente avec les centaines. Si la valeur de la variable dixième <b class="code">t</b> est égale à <b class="code">1</b>, cela signifie que vous avez traité la deuxième dizaine - dix, onze, douze, etc. Dans ce cas, vous devez utiliser les valeurs de la variable ones <b class="code">o</b> comme index pour l'élément du tuple <b class="code">SECOND_TEN</b>. 
+        </p>
+        <pre class="brush: python">
+res += (SECOND_TEN[o],) if t == 1 else ...
+        </pre>
+        <p>
+            Rappelez-vous que <b class="code">res</b> est un tuple, vous devez donc ajouter le dixième mot en tant qu'élément du tuple. C'est pourquoi les expressions ci-dessus peuvent sembler bizarres. 
+        </p>
+        <p>
+            Dans d'autres cas, lorsque <b class="code">t</b> n'est pas égal à <b class="code">1</b>, il vous suffit d'ajouter un tuple avec deux mots respectifs pour les index <b class="code">t</b> et <b class="code">o</b> des tuples <b class="code">OTHER_TENS</b> et <b class="code">FIRST_TEN</b>.  
+        </p>
+        <pre class="brush: python">
+res += (SECOND_TEN[o],) if t == 1 else (OTHER_TENS[t], FIRST_TEN[o])
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Le tuple est construit. Mais comment le convertir dans la bonne ligne de mots?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Supprimez toutes les chaînes vides (absentes des centaines, dixièmes, uns) du tuple avec la fonction intégrée <a target="_blank" href="https://www.w3schools.com/python/ref_func_filter.asp">filter()</a> et la fonction <b class="code">bool</b> comme règle de filtrage.
+        </p>
+        <pre class="brush: python">
+filter(bool, res)
+        </pre>
+        <p>
+            Utilisez le résultat du filtrage comme argument pour la méthode <a target="_blank" href="https://www.w3schools.com/python/ref_string_join.asp">str.join(iterable)</a>. Joignez les mots en utilisant des espaces. 
+        </p>
+        <pre class="brush: python">
+" ".join(filter(bool, res))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Alors, à quoi devrait ressembler ma solution finale?</p>
+    </div>
+    <div class="answer">
+        <p>
+            Il vous suffit d'ajouter les expressions finales des conseils précédents, d'envelopper votre code dans une expression de fonction et de renvoyer la chaîne jointe.
+        </p>
+        <p>Voici la solution complète:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+FIRST_TEN = "", "one", "two", "three", "four", "five", "six",\
+"seven", "eight", "nine"
+SECOND_TEN = "ten", "eleven", "twelve", "thirteen", "fourteen",\
+"fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
+OTHER_TENS = "", "", "twenty", "thirty", "forty", "fifty", "sixty",\
+"seventy", "eighty", "ninety"
+
+def checkio(num: int) -> str:
+    
+    h, t, o = map(int, str(num).zfill(3))
+    
+    res = FIRST_TEN[h], "hundred"*bool(h)
+    res += (SECOND_TEN[o],) if t == 1 else (OTHER_TENS[t], FIRST_TEN[o])
+    
+    return " ".join(filter(bool, res))
+        </pre>
+        </div>
+        <p>
+            Beaucoup d'explications, mais la solution est petite)
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Montrez-moi d'autres solutions!<br />
+        parce que je veux être une vraie 🥇 Python Ninnjaa!</p>
+    </div>
+    <div class="answer">
+        <p>Bien sûr, prenez-le!</p>
+        <p>
+            Il n'y a pas de conversion en chaîne de caractères dans cette solution. Les chiffres séparés sont reçus comme quotient ou rappel de la division.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+FIRST_TEN = ["one", "two", "three", "four", "five", "six", "seven",
+"eight", "nine"]
+SECOND_TEN = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+             "sixteen", "seventeen", "eighteen", "nineteen"]
+OTHER_TENS = ["twenty", "thirty", "forty", "fifty", "sixty", "seventy",
+             "eighty", "ninety"]
+HUNDRED = "hundred"
+
+def checkio(number: int) -> str:
+
+   n = number // 100
+   t = [FIRST_TEN[n-1], HUNDRED] if n > 0 else []
+
+   n = (number // 10) % 10
+   t += [OTHER_TENS[n-2]] if n > 1 else []
+
+   n = number % (10 if n > 1 else 20)
+   t += [(FIRST_TEN+SECOND_TEN)[n-1]] if n > 0 else []
+
+   return ' '.join(t)
+        </pre>
+        </div>
+        <p>
+            Dans cette solution, la récursivité est utilisée et les mots des deux premières dizaines sont réunis dans un seul dictionnaire. 
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def checkio(number: int) -> str:
+
+    l=["","one","two","three","four","five","six","seven",\
+    "eight","nine","ten","eleven","twelve","thirteen",\
+    "fourteen","fifteen","sixteen","seventeen","eighteen",\
+    "nineteen","twenty"]
+    d=dict(enumerate(l))
+    d.update({30:"thirty",40:"forty",50:"fifty",60:"sixty",\
+    70:"seventy",80:"eighty",90:"ninety"})
+    h=number//100
+    if h:
+        return (d[h]+ " hundred " + checkio(number%100)).strip()
+    if number in d:
+        return d[number]
+    return d[number//10*10]+" "+d[number%10]
+        </pre>
+        </div>
+        <p><b>Click "Best solutions" at mission menu and see a lot of other interesting solutions!</b></p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Merci beaucoup! Je sais et je comprends mieux maintenant! Tout fonctionne bien!</p>
+    </div>
+    <div class="answer">
+        👍 Heureux de l'apprendre!
+    </div>
+</div>
+</body>
