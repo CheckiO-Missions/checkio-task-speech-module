@@ -1,31 +1,33 @@
+
 <p>
     Le module vocal de Stephen est cassé.
-    Ce module était responsable de sa prononciation des nombres.
-    Il doit maintenant cliquer pour entrer chaque chiffre d'un nombre,
-    ce qui peut prendre un certain temps quand les nombres sont grands.
-    Aide le robot à parler proprement et améliore sa vitesse de traitement des nombres en lui écrivant un nouveau module vocal.
-    Tous les mots de la chaîne de caractères (string) doivent être séparés d'exactement un espace.
-    Faites attention avec les espaces -- c'est difficile de remarquer qu'il y en a deux au lieu d'un.
+    Ce module est responsable de la prononciation des chiffres.
+    Il doit cliquer pour saisir tous les chiffres d'une figure,
+    il doit donc cliquer pour saisir tous les chiffres d'une figure, ce qui peut lui prendre beaucoup de temps lorsqu'il s'agit de grands nombres.
+    Aidez le robot à parler correctement et augmentez sa vitesse de traitement des nombres en lui écrivant un nouveau module vocal.
+    Tous les mots de la chaîne doivent être séparés par un espace.
+    Faites attention aux espaces - il est difficile de voir si vous placez deux espaces au lieu d'un.
 </p>
 
 
 
-<p><strong>Données : </strong>Un nombre entier (integer).</p>
+<p><strong>Entrée:</strong> {% if is_js %}Un <span>nombre</span> <span>(number)</span>{% else %} Un <span>entier</span> <span>(integer)</span>{% endif %}.</p>
 
-<p><strong>Résultat : </strong>Une chaîne de caractères (string) de ce nombre en toutes lettres, en anglais.</p>
+<p><strong>Sortie:</strong> Une <span>chaîne de caractères</span> <span>(string)</span>.</p>
 
 <div class="for_info_only">
     <p>
-        <strong>Exemple :</strong>
+        <strong>Exemples:</strong>
     </p>
+    
 <pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
 </div>
 
 <p>
-    <strong>Utilisation :</strong>
-    Ce concept pourrait être utilisé dans un logiciel de synthèse vocale ou un système de rapports automatiques.
-    Ce système peut aussi être utile pour écrire un robot IRC en assignant des mots ou des phrases à des valeurs numériques
-    et en récupérant les réponses correspondant à ces valeurs. 
+   <strong>Comment l'utiliser:</strong>
+    Ce concept peut être utile pour les logiciels de synthèse vocale ou les systèmes de rapports automatiques.
+    Ce système peut également être utilisé lors de l'écriture d'un chatbot en attribuant des valeurs numériques à des mots ou à des phrases et en demandant à un système d'extraire des réponses en fonction de ces valeurs
+    numériques à des mots ou des phrases et en demandant à un système d'extraire des réponses basées sur ces valeurs.
 </p>
 
-<p><strong>Précondition : </strong>0 &lt; number &lt; 1000</p>
+<p><strong>Condition préalable: </strong>0 &lt; nombre &lt; 1000</p>
