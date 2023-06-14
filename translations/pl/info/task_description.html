@@ -1,0 +1,33 @@
+
+<p>
+    Moduł mowy Stephena jest uszkodzony.
+    Moduł ten jest odpowiedzialny za wymowę liczb.
+    Musi kliknąć, aby wprowadzić wszystkie cyfry liczbowe,
+    więc w przypadku dużych liczb może mu to zająć dużo czasu.
+    Proszę pomóc robotowi mówić poprawnie i zwiększyć szybkość przetwarzania liczb, pisząc dla niego nowy moduł mowy.
+    Wszystkie słowa w ciągu muszą być oddzielone dokładnie jednym znakiem spacji.
+    Proszę uważać na spacje - trudno będzie je zauważyć, jeśli zamiast jednej spacji zostaną wstawione dwie.
+</p>
+
+
+
+<p><strong>Dane wejściowe:</strong> Liczba całkowita <span>{% if is_js %}(number){% else %}(int){% endif %}</span>.</p>
+
+<p><strong>Wyjście:</strong> Ciąg znaków <span>(str{% if is_js %}ing{% endif %})</span>.</p>
+
+<div class="for_info_only">
+    <p>
+        <strong>Przykłady:</strong>
+    </p>
+    
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+</div>
+
+<p>
+   <strong>Sposób użycia:</strong>
+    Koncepcja ta może być przydatna w oprogramowaniu do syntezy mowy lub systemach automatycznych raportów.
+    System ten może być również wykorzystywany podczas pisania chatbota poprzez przypisywanie słowom lub frazom wartości numerycznych
+    przypisując słowom lub frazom wartości liczbowe i zlecając systemowi pobieranie odpowiedzi na podstawie tych wartości.
+</p>
+
+<p><strong>Warunek wstępny:</strong>0 &lt; liczba &lt; 1000</p>
