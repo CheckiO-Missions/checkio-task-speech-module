@@ -1,0 +1,258 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <p>Nie mam pojęcia, jak zacząć rozwiązywać tę misję.</p>
+    </div>
+    <div class="answer">
+        <p>
+            rozwiązanie, które Panu proponuję jest następujące.
+            <ul>
+                <li>
+                    <p>
+                        Po pierwsze, proszę wprowadzić takie zmiany w początkowych listach, aby każde słowo odpowiadało swojemu indeksowi. Dzięki temu dalsze wyrażenia będą bardziej czytelne. 
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Po drugie, aby rozbić początkową liczbę na listę / krotkę liczb całkowitych, uzupełnionych zerami do długości trzech (maksymalna długość liczby w tej misji).
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Po trzecie, utworzenie nowej listy ze słowami z początkowych list zamiast odpowiednich cyfr z "złamanej" liczby (biorąc pod uwagę konkretny przypadek z drugą dziesiątką - 10-19).
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        I ostatnie, proszę połączyć tę listę słów (bez pustych elementów) w ciąg znaków z białymi znakami i zwrócić go.
+                    </p>
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Ok, od czego powinienem zacząć?</p>
+    </div>
+    <div class="answer">
+        <p>
+            Dodajmy do początkowych list puste elementy na początku, aby słowa odpowiadały ich indeksom. Proszę również usunąć <b class="code">HUNDRED</b> - w rozwiązaniu napisze Pan słowo <b class="code">"hundred"</b>. Z list tworzę również krotki, ale nie ma to znaczenia - można je zachować jako listy.
+        </p>
+        <pre class="brush: python">
+FIRST_TEN = "", "one", "two", "three", "four", "five", "six",\
+"seven", "eight", "nine"
+SECOND_TEN = "ten", "eleven", "twelve", "thirteen", "fourteen",\
+"fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
+OTHER_TENS = "", "", "twenty", "thirty", "forty", "fifty", "sixty",\
+"seventy", "eighty", "ninety"
+        </pre>
+        <p>
+            Symbol <b class="code">\</b> jest używany do kontynuowania wyrażenia w następnej linii, jeśli to konieczne.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Proszę mi wyjaśnić, jak przekonwertować liczbę na krotkę liczb całkowitych.
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Powinien Pan zacząć od konwersji liczby na ciąg znaków za pomocą wbudowanej funkcji <a target="_blank" href="https://www.w3schools.com/python/ref_func_str.asp">str()</a>.
+        </p>
+        <pre class="brush: python">
+str(num)
+        </pre>
+        <p>
+            Teraz proszę uzupełnić ciąg zerami do długości trzech. Dzięki temu dalsze wyrażenia będą prostsze i bardziej czytelne. Proszę to zrobić za pomocą metody string <a target="_blank" href="https://www.w3schools.com/python/ref_string_zfill.asp">str.zfill(int)</a>.
+        </p>
+        <pre class="brush: python">
+str(num).zfill(3)
+        </pre>
+        <p>
+            Proszę podzielić ciąg znaków i przekonwertować każdy znak na liczbę całkowitą za pomocą wbudowanej funkcji <a target="_blank" href="https://www.w3schools.com/python/ref_func_map.asp">map()</a>.
+            Zwraca ona obiekt <b class="code">map</b>.
+        </p>
+        <pre class="brush: python">
+map(int, str(num).zfill(3))
+        </pre>
+        <p>
+            Będzie to przydatne później, jeśli rozpakujemy ten obiekt do krotki <b class="code">h, t, o</b> - odpowiednio setki, dziesiątki, jedynki. Ponieważ długość ciągu po uzupełnieniu zerami zawsze będzie wynosić 3, zawsze będą Państwo mieli setki i dziesiątki, nawet jeśli ich wartości pozostaną zerami. 
+        </p>
+        <pre class="brush: python">
+h, t, o = map(int, str(num).zfill(3))        
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            To było szczegółowe! Teraz proszę mi pomóc zbudować nową listę ze słowami zamiast cyfr.
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Proszę zadeklarować nową zmienną <b class="code">res</b> jako krotkę słów dla cyfry "setek". Wystarczy użyć zmiennej <b class="code">h</b> jako indeksu elementu krotki <b class="code">FIRST_TEN</b>, ponieważ liczenie setek jest takie samo jak liczenie jedynek - jeden (sto), dwa (sto) itd. Jeśli <b class="code">h</b> równa się <b class="code">0</b> pusty ciąg zostanie pobrany z krotki.
+        </p>
+        <pre class="brush: python">
+res = FIRST_TEN[h], ...
+        </pre>
+        <p>
+            Teraz należy dodać słowo <b class="code">"hundred"</b>, które jest potrzebne tylko wtedy, gdy <b class="code">h</b> (liczba setek) nie jest równa <b class="code">0</b>. Proszę użyć funkcji <a target="_blank" href="https://www.w3schools.com/python/python_booleans.asp">bool()</a>, aby wykonać sprawdzenie.
+        </p>
+        <pre class="brush: python">
+res = FIRST_TEN[h], "hundred"*bool(h)
+        </pre>
+        <p>
+            Jeśli <b class="code">h</b> jest równe <b class="code">0</b>, ten element krotki będzie pustym ciągiem.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Jak uzupełnić krotkę dziesiątkami i jedynkami?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Zasadniczo robimy to samo, co w poprzednim kroku z setkami. Jeśli wartość dziesiątki <b class="code">t</b> jest równa <b class="code">1</b>, oznacza to, że mają Państwo do czynienia z drugą dziesiątką - dziesięć, jedenaście, dwanaście itd. W takim przypadku należy użyć wartości zmiennej ones <b class="code">o</b> jako indeksu dla elementu w krotce <b class="code">SECOND_TEN</b>. 
+        </p>
+        <pre class="brush: python">
+res += (SECOND_TEN[o],) if t == 1 else ...
+        </pre>
+        <p>
+            Proszę pamiętać, że <b class="code">res</b> jest krotką, więc należy dodać dziesiąte słowo jako element krotki. Dlatego powyższe wyrażenia mogą wyglądać dziwnie. 
+        </p>
+        <p>
+            W innym przypadku, gdy <b class="code">t</b> nie jest równe <b class="code">1</b>, wystarczy dodać krotkę z dwoma odpowiednimi słowami dla indeksów <b class="code">t</b> i <b class="code">o</b> z krotek <b class="code">OTHER_TENS</b> i <b class="code">FIRST_TEN</b>.  
+        </p>
+        <pre class="brush: python">
+res += (SECOND_TEN[o],) if t == 1 else (OTHER_TENS[t], FIRST_TEN[o])
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Krotka jest zbudowana. Ale jak przekonwertować ją na właściwą linię słów?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Proszę usunąć wszystkie puste ciągi (bez setek, dziesiątek, jedynek) z krotki za pomocą wbudowanej funkcji <a target="_blank" href="https://www.w3schools.com/python/ref_func_filter.asp">filter()</a> i funkcji <b class="code">bool</b> jako reguły filtrowania.
+        </p>
+        <pre class="brush: python">
+filter(bool, res)
+        </pre>
+        <p>
+            Proszę użyć wyniku filtrowania jako argumentu dla metody <a target="_blank" href="https://www.w3schools.com/python/ref_string_join.asp">str.join(iterable)</a>. Proszę połączyć słowa za pomocą białych znaków. 
+        </p>
+        <pre class="brush: python">
+" ".join(filter(bool, res))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Jak więc powinno wyglądać moje ostateczne rozwiązanie?</p>
+    </div>
+    <div class="answer">
+        <p>
+            Wystarczy dodać końcowe wyrażenia z poprzednich wskazówek, zawinąć kod w wyrażenie funkcji i zwrócić połączony ciąg znaków.
+        </p>
+        <p>Oto całe rozwiązanie:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+FIRST_TEN = "", "one", "two", "three", "four", "five", "six",\
+"seven", "eight", "nine"
+SECOND_TEN = "ten", "eleven", "twelve", "thirteen", "fourteen",\
+"fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
+OTHER_TENS = "", "", "twenty", "thirty", "forty", "fifty", "sixty",\
+"seventy", "eighty", "ninety"
+
+def checkio(num: int) -> str:
+    
+    h, t, o = map(int, str(num).zfill(3))
+    
+    res = FIRST_TEN[h], "hundred"*bool(h)
+    res += (SECOND_TEN[o],) if t == 1 else (OTHER_TENS[t], FIRST_TEN[o])
+    
+    return " ".join(filter(bool, res))
+        </pre>
+        </div>
+        <p>
+            Tak wiele wyjaśniono, ale rozwiązanie jest małe)
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Proszę pokazać mi więcej rozwiązań!<br />
+        bo chcę być prawdziwym 🥇 Python Ninnjaa!</p>
+    </div>
+    <div class="answer">
+        <p>Jasne, proszę łapać!</p>
+        <p>
+            W tym rozwiązaniu nie ma konwersji na ciąg znaków. Oddzielne cyfry są otrzymywane jako iloraz lub przypomnienie z dzielenia.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+FIRST_TEN = ["one", "two", "three", "four", "five", "six", "seven",
+"eight", "nine"]
+SECOND_TEN = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+             "sixteen", "seventeen", "eighteen", "nineteen"]
+OTHER_TENS = ["twenty", "thirty", "forty", "fifty", "sixty", "seventy",
+             "eighty", "ninety"]
+HUNDRED = "hundred"
+
+def checkio(number: int) -> str:
+
+   n = number // 100
+   t = [FIRST_TEN[n-1], HUNDRED] if n> 0 else []
+
+   n = (number // 10) % 10
+   t += [OTHER_TENS[n-2]] if n> 1 else []
+
+   n = number % (10 if n> 1 else 20)
+   t += [(FIRST_TEN+SECOND_TEN)[n-1]] if n> 0 else []
+
+   return ' '.join(t)
+        </pre>
+        </div>
+        <p>
+            W tym rozwiązaniu zastosowano rekurencję i słowa dla pierwszych dwóch dziesięciu połączono w jeden słownik. 
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def checkio(number: int) -> str:
+
+    l=["","one","two","three","four","five","six","seven",\
+    "eight","nine","ten","eleven","twelve","thirteen",\
+    "fourteen","fifteen","sixteen","seventeen","eighteen",\
+    "nineteen","twenty"]
+    d=dict(enumerate(l))
+    d.update({30:"thirty",40:"forty",50:"fifty",60:"sixty",\
+    70:"seventy",80:"eighty",90:"ninety"})
+    h=number//100
+    if h:
+        return (d[h]+ " hundred " + checkio(number%100)).strip()
+    if number in d:
+        return d[number]
+    return d[number//10*10]+" "+d[number%10]
+        </pre>
+        </div>
+        <p>Proszę kliknąć <b>Best Solutions</b> w menu misji i zobaczyć wiele innych ciekawych rozwiązań!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Dzięki! Teraz wiem i rozumiem więcej! Wszystko działa dobrze!</p>
+    </div>
+    <div class="answer">
+        miło mi to słyszeć!
+    </div>
+</div>
+</body>
