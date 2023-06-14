@@ -11,9 +11,9 @@
 
 
 
-<p><strong>Input:</strong> {% if is_js %}A <span translate="repeat">number</span>{% else %}An <span translate="repeat">integer</span>{% endif %}.</p>
+<p><strong>Input:</strong> An integer <span translate="no">{% if is_js %}(number){% else %}(int){% endif %}</span>.</p>
 
-<p><strong>Output:</strong> A <span translate="repeat">string</span>.</p>
+<p><strong>Output:</strong> A string <span translate="no">(str{% if is_js %}ing{% endif %})</span>.</p>
 
 <div class="for_info_only">
     <p>
@@ -30,4 +30,4 @@
     values and having a system retrieve responses based on those values.
 </p>
 
-<p><strong>Precondition: </strong>0 &lt; number &lt; 1000</p>
+<p><strong>Precondition:</strong>0 &lt; number &lt; 1000</p>
