@@ -1,0 +1,258 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <p>我不知道如何开始解决这个任务。</p>
+    </div>
+    <div class="answer">
+        <p>
+            💡 我为你提供的解决方案如下。
+            <ul>
+                <li>
+                    <p>
+                        首先，在初始列表中进行这样的修改，使每个词都能对其索引做出反应。其使进一步的表达更具有可读性。 
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        第二，将初始数字分解成整数的列表/图元，用零补充到3的长度（本任务中数字的最大长度）。
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        第三，创建新的列表，用初始列表中的单词代替 "分解 "后的数字（考虑到第二个十位数的具体情况 - 10-19）。
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        最后，将这个单词列表（不含空元素）加入带空格的字符串并返回。
+                    </p>
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>好的，我应该从什么开始？</p>
+    </div>
+    <div class="answer">
+        <p>
+            让我们在最初的列表中加入空元素，这样单词就会变成与它的索引相对应。同时删除<b class="code">HUNDRED</b> - 你将在解决方案中写下单词<b class="code">"hundred"</b> 。我也从列表中制作了图元，但这并不重要--你可以将它们保持为列表。
+        </p>
+        <pre class="brush: python">
+FIRST_TEN = "", "one", "two", "three", "four", "five", "six",\
+"seven", "eight", "nine"
+SECOND_TEN = "ten", "eleven", "twelve", "thirteen", "fourteen",\
+"fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
+OTHER_TENS = "", "", "twenty", "thirty", "forty", "fifty", "sixty",\
+"seventy", "eighty", "ninety"
+        </pre>
+        <p>
+            符号<b class="code">\</b> 用于在必要时在下一行继续表达。
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            请解释一下，如何将数字转换成整数的元组。
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            你应该先用<a target="_blank" href="https://www.w3schools.com/python/ref_func_str.asp">str()</a> 内置函数将数字转换为字符串。
+        </p>
+        <pre class="brush: python">
+str(num)
+        </pre>
+        <p>
+            现在，用零来补充字符串的长度为3。它使进一步的表达式更简单，更易读。用字符串方法<a target="_blank" href="https://www.w3schools.com/python/ref_string_zfill.asp">str.zfill(int)</a> 来做。
+        </p>
+        <pre class="brush: python">
+str(num).zfill(3)
+        </pre>
+        <p>
+            用<a target="_blank" href="https://www.w3schools.com/python/ref_func_map.asp">map()</a> 内置函数分割字符串并将每个字符转换为整数。
+            它返回<b class="code">map</b> 对象。
+        </p>
+        <pre class="brush: python">
+map(int, str(num).zfill(3))
+        </pre>
+        <p>
+            稍后，如果将此对象解压为元组<b class="code">h, t, o</b> ，将非常有用--百位、十位、一位。由于用零补充后的字符串的长度总是3，所以你总是会有百位和十位，即使它们的值仍然是零。 
+        </p>
+        <pre class="brush: python">
+h, t, o = map(int, str(num).zfill(3))        
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            这很详细!现在，请帮助我建立一个用单词代替数字的新列表。
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            让我们声明新的变量<b class="code">res</b> ，作为你的 "百 "位的单词元组。你只需要用<b class="code">h</b> 变量作为元素<b class="code">FIRST_TEN</b> 元组的索引，因为百位数的计数与一的计数相同--一（百），二（百）等。如果<b class="code">h</b> 等于<b class="code">0</b> ，则从元组中得到空字符串。
+        </p>
+        <pre class="brush: python">
+res = FIRST_TEN[h], ...
+        </pre>
+        <p>
+            现在你需要添加单词<b class="code">"hundred"</b> ，只有在<b class="code">h</b> （百位数）不等于<b class="code">0</b> ，才需要添加这个单词。使用<a target="_blank" href="https://www.w3schools.com/python/python_booleans.asp">bool()</a> 函数来执行检查。
+        </p>
+        <pre class="brush: python">
+res = FIRST_TEN[h], "hundred"*bool(h)
+        </pre>
+        <p>
+            如果<b class="code">h</b> 等于<b class="code">0</b> ，这个元组的元素将是空字符串。
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            如何用十和一来补充这个元组？
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            基本上，就像上一步的百位数一样，做同样的事情。如果第十个<b class="code">t</b> 的值等于<b class="code">1</b> ，这意味着你已经处理了第二个十 - 十、十一、十二等。在这种情况下，你应该使用 ones<b class="code">o</b> 变量的值作为<b class="code">SECOND_TEN</b> 元素的索引。 
+        </p>
+        <pre class="brush: python">
+res += (SECOND_TEN[o],) if t == 1 else ...
+        </pre>
+        <p>
+            记住，<b class="code">res</b> 是一个元组，所以你需要把第十个字作为元组的一个元素加入。这就是为什么上面的表达式可能看起来很奇怪。 
+        </p>
+        <p>
+            在其他情况下，当<b class="code">t</b> 不等于<b class="code">1</b> 时，你只需从<b class="code">OTHER_TENS</b> 和<b class="code">FIRST_TEN</b> 元组中为<b class="code">t</b> 和<b class="code">o</b> 索引添加一个元组，并分别添加两个词。  
+        </p>
+        <pre class="brush: python">
+res += (SECOND_TEN[o],) if t == 1 else (OTHER_TENS[t], FIRST_TEN[o])
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            这个元组就建成了。但如何将其转换为正确的词行？
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            用内置的<a target="_blank" href="https://www.w3schools.com/python/ref_func_filter.asp">filter()</a> 函数和<b class="code">bool</b> 函数作为过滤规则，从元组中删除所有的空字符串（没有百、十、一）。
+        </p>
+        <pre class="brush: python">
+filter(bool, res)
+        </pre>
+        <p>
+            使用过滤的结果作为<a target="_blank" href="https://www.w3schools.com/python/ref_string_join.asp">str.join(iterable)</a> 方法的参数。使用空白处连接单词。 
+        </p>
+        <pre class="brush: python">
+" ".join(filter(bool, res))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>那么，我的最终解决方案应该是什么样子的呢？</p>
+    </div>
+    <div class="answer">
+        <p>
+            你只需要在前面的提示中加入最后的表达式，把你的代码包成函数表达式，并返回连接的字符串。
+        </p>
+        <p>下面是整个解决方案：</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+FIRST_TEN = "", "one", "two", "three", "four", "five", "six",\
+"seven", "eight", "nine"
+SECOND_TEN = "ten", "eleven", "twelve", "thirteen", "fourteen",\
+"fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
+OTHER_TENS = "", "", "twenty", "thirty", "forty", "fifty", "sixty",\
+"seventy", "eighty", "ninety"
+
+def checkio(num: int) -> str:
+    
+    h, t, o = map(int, str(num).zfill(3))
+    
+    res = FIRST_TEN[h], "hundred"*bool(h)
+    res += (SECOND_TEN[o],) if t == 1 else (OTHER_TENS[t], FIRST_TEN[o])
+    
+    return " ".join(filter(bool, res))
+        </pre>
+        </div>
+        <p>
+            解释了这么多，但解决方案却很小)
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>告诉我更多的解决方案!<br />
+        因为我想成为一个真正的🥇 Python Ninnjaa!</p>
+    </div>
+    <div class="answer">
+        <p>当然，抓住它!</p>
+        <p>
+            在这个解决方案中没有转换为字符串。分开的数字作为商或除法的提醒被接收。
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+FIRST_TEN = ["one", "two", "three", "four", "five", "six", "seven",
+"eight", "nine"]
+SECOND_TEN = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+             "sixteen", "seventeen", "eighteen", "nineteen"]
+OTHER_TENS = ["twenty", "thirty", "forty", "fifty", "sixty", "seventy",
+             "eighty", "ninety"]
+HUNDRED = "hundred"
+
+def checkio(number: int) -> str:
+
+   n = number // 100
+   t = [FIRST_TEN[n-1], HUNDRED] if n> 0 else []
+
+   n = (number // 10) % 10
+   t += [OTHER_TENS[n-2]] if n> 1 else []
+
+   n = number % (10 if n> 1 else 20)
+   t += [(FIRST_TEN+SECOND_TEN)[n-1]] if n> 0 else []
+
+   return ' '.join(t)
+        </pre>
+        </div>
+        <p>
+            在这个解决方案中使用了递归，前两个十位的单词被加入到一个字典中。 
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def checkio(number: int) -> str:
+
+    l=["","one","two","three","four","five","six","seven",\
+    "eight","nine","ten","eleven","twelve","thirteen",\
+    "fourteen","fifteen","sixteen","seventeen","eighteen",\
+    "nineteen","twenty"]
+    d=dict(enumerate(l))
+    d.update({30:"thirty",40:"forty",50:"fifty",60:"sixty",\
+    70:"seventy",80:"eighty",90:"ninety"})
+    h=number//100
+    if h:
+        return (d[h]+ " hundred " + checkio(number%100)).strip()
+    if number in d:
+        return d[number]
+    return d[number//10*10]+" "+d[number%10]
+        </pre>
+        </div>
+        <p>点击任务菜单上的<b>Best Solutions</b> ，可以看到很多其他有趣的解决方案!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>谢谢!我现在知道并理解了更多!一切工作都很顺利!</p>
+    </div>
+    <div class="answer">
+        👍很高兴听到这个消息!
+    </div>
+</div>
+</body>
