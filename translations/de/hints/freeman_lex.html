@@ -1,0 +1,258 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <p>Ich habe keine Ahnung, wie ich mit der Lösung dieser Aufgabe beginnen soll.</p>
+    </div>
+    <div class="answer">
+        <p>
+            💡 Die Lösung, die ich Ihnen vorschlage, ist die folgende.
+            <ul>
+                <li>
+                    <p>
+                        Erstens, nehmen Sie solche Änderungen an den ursprünglichen Listen vor, dass jedes Wort auf seinen Index reagiert. Das macht die weiteren Ausdrücke besser lesbar. 
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Zweitens, die anfängliche Zahl in eine Liste/Tupel von ganzen Zahlen aufzulösen, die mit Nullen bis zur Länge von drei ergänzt werden (die maximale Länge der Zahl in dieser Mission).
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Drittens: Erstellen Sie eine neue Liste mit Wörtern aus den ursprünglichen Listen anstelle der entsprechenden Ziffern aus der "gebrochenen" Zahl (unter Berücksichtigung des Sonderfalls mit der zweiten Zehntel - 10-19).
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        Und zuletzt fügen Sie diese Liste von Wörtern (ohne leere Elemente) in die Zeichenkette mit Leerzeichen ein und geben sie zurück.
+                    </p>
+                </li>
+            </ul>
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Ok, womit soll ich anfangen?</p>
+    </div>
+    <div class="answer">
+        <p>
+            Fügen wir den anfänglichen Listen leere Elemente hinzu, damit die Wörter ihren Indizes entsprechen. Entfernen Sie auch <b class="code">HUNDRED</b> - Sie werden in der Lösung <b class="code">"hundred"</b> ein Wort schreiben. Ich mache auch Tupel aus den Listen, aber das macht nichts - Sie können sie als Listen behalten.
+        </p>
+        <pre class="brush: python">
+FIRST_TEN = "", "one", "two", "three", "four", "five", "six",\
+"seven", "eight", "nine"
+SECOND_TEN = "ten", "eleven", "twelve", "thirteen", "fourteen",\
+"fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
+OTHER_TENS = "", "", "twenty", "thirty", "forty", "fifty", "sixty",\
+"seventy", "eighty", "ninety"
+        </pre>
+        <p>
+            Das Symbol <b class="code">\</b> wird verwendet, um den Ausdruck in der nächsten Zeile fortzusetzen, falls erforderlich.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Erklären Sie mir, wie man eine Zahl in ein Tupel von ganzen Zahlen umwandelt.
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Beginnen Sie mit der Konvertierung einer Zahl in eine Zeichenkette mit der integrierten Funktion <a target="_blank" href="https://www.w3schools.com/python/ref_func_str.asp">str()</a>.
+        </p>
+        <pre class="brush: python">
+str(num)
+        </pre>
+        <p>
+            Ergänzen Sie nun die Zeichenkette mit Nullen auf die Länge von drei. Das macht weitere Ausdrücke einfacher und lesbarer. Tun Sie dies mit der String-Methode <a target="_blank" href="https://www.w3schools.com/python/ref_string_zfill.asp">str.zfill(int)</a>.
+        </p>
+        <pre class="brush: python">
+str(num).zfill(3)
+        </pre>
+        <p>
+            Teilen Sie die Zeichenkette auf und wandeln Sie jedes Zeichen mit der integrierten Funktion <a target="_blank" href="https://www.w3schools.com/python/ref_func_map.asp">map()</a> in eine Ganzzahl um.
+            Sie gibt das Objekt <b class="code">map</b> zurück.
+        </p>
+        <pre class="brush: python">
+map(int, str(num).zfill(3))
+        </pre>
+        <p>
+            Es wird später nützlich sein, dieses Objekt in ein Tupel <b class="code">h, t, o</b> zu entpacken - Hunderter, Zehntel, Einer. Da die Länge der Zeichenkette nach dem Ergänzen mit Nullen immer 3 beträgt, haben Sie immer Hunderter und Zehntel, auch wenn deren Werte Nullen bleiben. 
+        </p>
+        <pre class="brush: python">
+h, t, o = map(int, str(num).zfill(3))        
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Das war ausführlich! Helfen Sie mir nun, die neue Liste mit Wörtern anstelle von Ziffern zu erstellen.
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Lassen Sie uns die neue Variable <b class="code">res</b> als Tupel von Wörtern für Ihre "Hunderter"-Zahl deklarieren. Sie brauchen nur die Variable <b class="code">h</b> als Index des Elements <b class="code">FIRST_TEN</b> Tupel zu verwenden, da die Zählung der Hunderter die gleiche ist wie die Zählung der Einer - eins (hundert), zwei (hundert) usw. Wenn <b class="code">h</b> gleich <b class="code">0</b> ist, wird der leere String aus dem Tupel geholt.
+        </p>
+        <pre class="brush: python">
+res = FIRST_TEN[h], ...
+        </pre>
+        <p>
+            Jetzt müssen Sie das Wort <b class="code">"hundred"</b> hinzufügen, das nur benötigt wird, wenn <b class="code">h</b> (Anzahl der Hunderter) nicht gleich <b class="code">0</b> ist. Verwenden Sie die Funktion <a target="_blank" href="https://www.w3schools.com/python/python_booleans.asp">bool()</a>, um die Überprüfung durchzuführen.
+        </p>
+        <pre class="brush: python">
+res = FIRST_TEN[h], "hundred"*bool(h)
+        </pre>
+        <p>
+            Wenn <b class="code">h</b> gleich <b class="code">0</b> ist, wäre dieses Element des Tupels ein leerer String.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Wie kann man das Tupel mit Zehnern und Einern ergänzen?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Im Grunde tun Sie dasselbe wie im vorherigen Schritt mit Hundertern. Wenn der Wert der Zehnten <b class="code">t</b> gleich <b class="code">1</b> ist, bedeutet das, dass Sie mit der zweiten Zehn zu tun haben - zehn, elf, zwölf usw. In diesem Fall sollten Sie die Werte der Variablen ones <b class="code">o</b> als Index für das Element im Tupel <b class="code">SECOND_TEN</b> verwenden. 
+        </p>
+        <pre class="brush: python">
+res += (SECOND_TEN[o],) if t == 1 else ...
+        </pre>
+        <p>
+            Denken Sie daran, dass <b class="code">res</b> ein Tupel ist, also müssen Sie das zehnte Wort als ein Element des Tupels hinzufügen. Deshalb sehen die obigen Ausdrücke vielleicht etwas seltsam aus. 
+        </p>
+        <p>
+            In einem anderen Fall, wenn <b class="code">t</b> nicht gleich <b class="code">1</b> ist, fügen Sie einfach ein Tupel mit zwei entsprechenden Wörtern für die Indizes <b class="code">t</b> und <b class="code">o</b> aus den Tupeln <b class="code">OTHER_TENS</b> und <b class="code">FIRST_TEN</b> hinzu.  
+        </p>
+        <pre class="brush: python">
+res += (SECOND_TEN[o],) if t == 1 else (OTHER_TENS[t], FIRST_TEN[o])
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Das Tupel ist erstellt. Aber wie konvertiert man es in die richtige Zeile von Wörtern?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Entfernen Sie alle leeren Zeichenfolgen (ohne Hunderter, Zehner, Einer) aus dem Tupel mit der integrierten Funktion <a target="_blank" href="https://www.w3schools.com/python/ref_func_filter.asp">filter()</a> und der Funktion <b class="code">bool</b> als Filterregel.
+        </p>
+        <pre class="brush: python">
+filter(bool, res)
+        </pre>
+        <p>
+            Verwenden Sie das Ergebnis der Filterung als Argument für die Methode <a target="_blank" href="https://www.w3schools.com/python/ref_string_join.asp">str.join(iterable)</a>. Verbinden Sie die Wörter mit Leerzeichen. 
+        </p>
+        <pre class="brush: python">
+" ".join(filter(bool, res))
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Wie sollte also meine endgültige Lösung aussehen?</p>
+    </div>
+    <div class="answer">
+        <p>
+            Sie müssen nur noch die letzten Ausdrücke aus den vorherigen Hinweisen hinzufügen, Ihren Code in einen Funktionsausdruck verpacken und die zusammengefügte Zeichenfolge zurückgeben.
+        </p>
+        <p>Hier ist die gesamte Lösung:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+FIRST_TEN = "", "one", "two", "three", "four", "five", "six",\
+"seven", "eight", "nine"
+SECOND_TEN = "ten", "eleven", "twelve", "thirteen", "fourteen",\
+"fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
+OTHER_TENS = "", "", "twenty", "thirty", "forty", "fifty", "sixty",\
+"seventy", "eighty", "ninety"
+
+def checkio(num: int) -> str:
+    
+    h, t, o = map(int, str(num).zfill(3))
+    
+    res = FIRST_TEN[h], "hundred"*bool(h)
+    res += (SECOND_TEN[o],) if t == 1 else (OTHER_TENS[t], FIRST_TEN[o])
+    
+    return " ".join(filter(bool, res))
+        </pre>
+        </div>
+        <p>
+            So viel erklärt, und doch ist die Lösung klein)
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Zeigen Sie mir mehr Lösungen!<br />
+        denn ich will ein echter 🥇 Python Ninnjaa sein!</p>
+    </div>
+    <div class="answer">
+        <p>Klar, schnapp sie dir!</p>
+        <p>
+            Bei dieser Lösung gibt es keine Umwandlung in einen String. Die einzelnen Ziffern werden als Quotient oder Erinnerung an die Division erhalten.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+FIRST_TEN = ["one", "two", "three", "four", "five", "six", "seven",
+"eight", "nine"]
+SECOND_TEN = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
+             "sixteen", "seventeen", "eighteen", "nineteen"]
+OTHER_TENS = ["twenty", "thirty", "forty", "fifty", "sixty", "seventy",
+             "eighty", "ninety"]
+HUNDRED = "hundred"
+
+def checkio(number: int) -> str:
+
+   n = number // 100
+   t = [FIRST_TEN[n-1], HUNDRED] if n> 0 else []
+
+   n = (number // 10) % 10
+   t += [OTHER_TENS[n-2]] if n> 1 else []
+
+   n = number % (10 if n> 1 else 20)
+   t += [(FIRST_TEN+SECOND_TEN)[n-1]] if n> 0 else []
+
+   return ' '.join(t)
+        </pre>
+        </div>
+        <p>
+            Bei dieser Lösung wird eine Rekursion verwendet und die Wörter für die ersten beiden Zehner in einem Wörterbuch zusammengefasst. 
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def checkio(number: int) -> str:
+
+    l=["","one","two","three","four","five","six","seven",\
+    "eight","nine","ten","eleven","twelve","thirteen",\
+    "fourteen","fifteen","sixteen","seventeen","eighteen",\
+    "nineteen","twenty"]
+    d=dict(enumerate(l))
+    d.update({30:"thirty",40:"forty",50:"fifty",60:"sixty",\
+    70:"seventy",80:"eighty",90:"ninety"})
+    h=number//100
+    if h:
+        return (d[h]+ " hundred " + checkio(number%100)).strip()
+    if number in d:
+        return d[number]
+    return d[number//10*10]+" "+d[number%10]
+        </pre>
+        </div>
+        <p>Klicken Sie auf <b>Best Solutions</b> im Menü Mission und sehen Sie sich viele andere interessante Lösungen an!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Vielen Dank! Ich weiß und verstehe jetzt mehr! Alles funktioniert einwandfrei!</p>
+    </div>
+    <div class="answer">
+        👍 Freut mich zu hören!
+    </div>
+</div>
+</body>
