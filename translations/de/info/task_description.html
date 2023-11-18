@@ -1,0 +1,33 @@
+<img src="{{MEDIA_CONVERT}}title.png" class="title_img" />
+<p>
+    Stephens Sprachmodul ist defekt.
+    Dieses Modul ist für die Aussprache seiner Zahlen verantwortlich.
+    Er muss klicken, um alle numerischen Ziffern einer Zahl einzugeben,
+    bei großen Zahlen kann es daher sehr lange dauern.
+    Helfen Sie dem Roboter, richtig zu sprechen und seine Zahlenverarbeitungsgeschwindigkeit zu erhöhen, indem Sie ein neues Sprachmodul für ihn schreiben.
+    Alle Wörter in der Zeichenkette müssen durch genau ein Leerzeichen getrennt sein.
+    Seien Sie vorsichtig mit Leerzeichen - es ist schwer zu erkennen, wenn Sie zwei Leerzeichen anstelle von einem setzen.
+</p>
+
+
+
+<p><strong>Eingabe:</strong> Eine ganze Zahl <span>{% if is_js %}(number){% else %}(int){% endif %}</span>.</p>
+
+<p><strong>Ausgabe:</strong> Eine Zeichenkette <span>(str{% if is_js %}ing{% endif %})</span>.</p>
+
+<div class="for_info_only">
+    <p>
+        <strong>Beispiele:</strong>
+    </p>
+    
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+</div>
+
+<p>
+   <strong>Wie es verwendet wird:</strong>
+    Dieses Konzept kann für die Sprachsynthese-Software oder automatische Meldesysteme nützlich sein.
+    Dieses System kann auch beim Schreiben eines Chatbots verwendet werden, indem man Wörtern oder Phrasen numerische Werte zuweist
+    werte zuweisen und ein System Antworten auf der Grundlage dieser Werte abrufen lassen.
+</p>
+
+<p><strong>Vorbedingung:</strong>0 &lt; Zahl &lt; 1000</p>
